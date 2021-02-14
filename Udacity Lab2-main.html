@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 id="head">Lab: Pixel Art Maker</h1>
+    <h2>Chosse Grid Size</h2>
+    <form>
+        Grid Height : 
+        <input type="Number" id="HeightID">
+        Grid Width : 
+        <input type="Number" id="WidthID">
+      <input type="button" value="Submit Data" onclick="drawGrid()" id="submit">
+    </form>
+
+    <h4>Pick a Color</h4>  <input type="color" id="ColorID">
+
+    <h1>Design Canvas</h1>
+    <table id="GridID">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>   
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </table>
+    <button id="reset" onclick="Reset()">Reset</button>
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    #head {
+        font-family: 'Monoton', cursive;
+        font-size: 70px;
+    }
+
+    table, tr, td {
+        border: 1px solid black;
+        }
+
+    table {
+        border-collapse: collapse;
+        margin: auto;
+    }    
+
+    tr {
+        height: 20px;
+    }
+
+    td {
+        width: 20px;
+    }
+    #reset {
+        margin: auto;
+    }
+
+</style>
+
+
+<script>
+
+function drawGrid() {
+var table = document.getElementById('GridID');
+table.innerHTML = '';    
+var rows = document.getElementById('HeightID').value;
+var columns = document.getElementById('WidthID').value;
+
+
+var tabledata = '';
+for(var i=0; i<rows; i++) {
+    tabledata += '<tr>';
+        for(var x=0; x<columns; x++) {
+            tabledata += '<td></td>';
+        } 
+        tabledata += '</tr>';
+}
+table.innerHTML = tabledata;
+    AddEventForTD();
+
+}
+
+function AddEventForTD() {
+    var tds = document.getElementsByTagName('td');
+    for (var i=0; i<tds.length; i++) {
+        tds[i].addEventListener("click", function(event) {
+    var currenttd = event.target;
+    currenttd.style.backgroundColor = document.getElementById('ColorID').value;
+ })
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    AddEventForTD();
+})
+
+function Reset() {
+    location.reload(true);
+    
+}
+    resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener('click', reset);
+
+
+</script>
+
+
+</body>
+</html>
